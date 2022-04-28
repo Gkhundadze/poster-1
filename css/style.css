@@ -15,6 +15,7 @@ a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 30px 0;
 }
 .accout-wrapper,
 .groups-wrapper {
