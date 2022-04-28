@@ -25,6 +25,9 @@ a{
     background-color: rgb(112, 104, 104);
     padding: 10px;
 }
+.accout-wrapper {
+    margin-bottom: 20px;
+}
 .title{
     font-size: 22px;
     margin: 20px 10px;
