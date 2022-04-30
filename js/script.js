@@ -1,33 +1,62 @@
 let groups = [
     {
-        id: 1,
-        url: 'https://www.facebook.com/groups/3443734562391979',
+        groupId: 1,
+        groupUrl: 'https://www.facebook.com/groups/3443734562391979',
+        groupType: 'standart'
     },
     {
-        id: 2,
-        url: 'https://www.facebook.com/groups/expatsgeorgia',
+        groupId: 2,
+        groupUrl: 'https://www.facebook.com/groups/expatsgeorgia',
+        groupType: 'sale'
     },
     {
-        id: 3,
-        url: 'https://www.facebook.com/groups/461962624218579',
+        groupId: 3,
+        groupUrl: 'https://www.facebook.com/groups/461962624218579',
+        groupType: 'standart'
     },
     {
-        id: 4,
-        url: 'https://www.facebook.com/groups/1430727040517949',
+        groupId: 4,
+        groupUrl: 'https://www.facebook.com/groups/1430727040517949',
+        groupType: 'sale'
     },
     {
-        id: 5,
-        url: 'https://www.facebook.com/groups/1773883749528752',
+        groupId: 5,
+        groupUrl: 'https://www.facebook.com/groups/1773883749528752',
+        groupType: 'standart'
     },
     {
-        id: 6,
-        url: 'https://www.facebook.com/groups/350357658821902',
+        groupId: 6,
+        groupUrl: 'https://www.facebook.com/groups/350357658821902',
+        groupType: 'sale'
+    },
+]
+let accounts = [
+    {
+        accountId: 1,
+        accountUrl: 'archil.gulisashvili@gmail.com',
+        gender: 'male',
+    },
+    {
+        accountId: 2,
+        accountUrl: 'achiko1460@gmail.com',
+        gender: 'male',
+    },
+    {
+        accountId: 3,
+        accountUrl: 'marimari987@gmail.com',
+        gender: 'female',
+    },
+    {
+        accountId: 4,
+        accountUrl: 'ninooo111@gmail.com',
+        gender: 'female',
     },
 ]
 const imageInput = document.querySelector('#image-uploader');
 const imagesWrapper = document.querySelector('.images-wrapper');
 const imagesCounter = document.querySelector('.images-counter');
 const groupUrls = document.querySelector('.urls-wrapper');
+const accountsWrapper = document.querySelector('.accounts-wrapper')
 const selectAllCheckbox = document.querySelector('#select-all')
 let selectAllLabel = document.querySelector('#select-unselect')
 
@@ -50,20 +79,37 @@ imageInput.addEventListener('change', function (e) {
 
 
 
-renderItems(groups)
+renderGroups(groups)
+renderAccounts(accounts)
 
-
-function renderItems (arr) {
+function renderGroups (arr) {
     arr.forEach(element => {
         const group = document.createElement('li')
         group.classList.add('url-wrapper')
         groupUrls.append(group)
         group.innerHTML =  
         `
-            <input type="checkbox" id=${"group" + element.id} class="group-checkbox">
-            <label for=${"group" + element.id} class="group-address">${element.url}</label>
+            <input type="checkbox" id=${"group" + element.groupId} class="group-checkbox">
+            <label for=${"group" + element.groupId} class="group-address">${element.groupUrl}</label>
+            <span>${element.groupType}</span>
         `
     });
+}
+
+function renderAccounts (arr) {
+    arr.forEach(item => {
+        const account = document.createElement('li')
+        account.classList.add('account-wrapper')
+        accountsWrapper.append(account)
+        account.innerHTML = 
+        `
+            <input id=${"account" + item.accountId} type="checkbox" class="account-checkbox">
+            <label  for=${"account" + item.accountId} class="account-address">${item.accountUrl}</label>
+            <span>${item.gender}</span>
+        `
+    })
+    
+    
 }
 
 

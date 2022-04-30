@@ -61,7 +61,8 @@ a{
 {
     transform: scale(1.5);
 }
-.url-wrapper {
+.url-wrapper,
+.account-wrapper {
     margin: 10px 0;
 }
 .post-description   {
