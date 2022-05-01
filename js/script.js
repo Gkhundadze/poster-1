@@ -67,7 +67,7 @@ const accountArrowBtnFemale = document.querySelector('.arrow-icon-female')
 let expandedMale = false
 accountArrowBtnMale.addEventListener('click', function () {
     if(!expandedMale) {
-        accountArrowBtnMale.style.transform = 'rotate(180deg)'
+        accountArrowBtnMale.style.transform = 'rotate(270deg)'
         accountsWrapperMale.classList.add('expanded')
         expandedMale = !expandedMale
     }else {
@@ -81,7 +81,7 @@ accountArrowBtnMale.addEventListener('click', function () {
 let expandedFemale = false
 accountArrowBtnFemale.addEventListener('click', function () {
     if(!expandedFemale) {
-        accountArrowBtnFemale.style.transform = 'rotate(180deg)'
+        accountArrowBtnFemale.style.transform = 'rotate(270deg)'
         accountsWrapperFemale.classList.add('expanded')
         expandedFemale = !expandedFemale
     }else {

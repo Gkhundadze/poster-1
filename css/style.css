@@ -120,23 +120,25 @@ a{
 }
 .accounts-wrapper-male,
 .accounts-wrapper-female {
-    height: 0;
+    max-height: 0;
     overflow: hidden;
-    transition: .3s ease-out;
+    transition: .2s ease-out;
 }
 .accounts-wrapper-male.expanded,
 .accounts-wrapper-female.expanded {
-    height: auto;
-    overflow: auto;
+    transition: .2s ease-in;
+    max-height: 1000px;
+    overflow: hidden;
 }
 .arrow-icon-male,
 .arrow-icon-female{
-    transition: .2s ease-out;
+    transition: .1s ease-out;
     height: 20px;
     cursor: pointer;
 }
 .female-title, .female-title {
     margin: 10px 0;
+    line-height: 24px;
 }
 
 
