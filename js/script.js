@@ -55,14 +55,43 @@ let accounts = [
 const imageInput = document.querySelector('#image-uploader');
 const imagesWrapper = document.querySelector('.images-wrapper');
 const imagesCounter = document.querySelector('.images-counter');
-const groupUrls = document.querySelector('.urls-wrapper');
+const groupUrlsStandart = document.querySelector('.urls-wrapper-standart');
+const groupUrlsSale = document.querySelector('.urls-wrapper-sale');
 const accountsWrapperMale = document.querySelector('.accounts-wrapper-male')
 const accountsWrapperFemale = document.querySelector('.accounts-wrapper-female')
 const selectAllCheckbox = document.querySelector('#select-all')
 let selectAllLabel = document.querySelector('#select-unselect')
+
 const accountArrowBtnMale = document.querySelector('.arrow-icon-male')
 const accountArrowBtnFemale = document.querySelector('.arrow-icon-female')
+const accountArrowBtnStandart = document.querySelector('.arrow-icon-standart')
+const accountArrowBtnSale = document.querySelector('.arrow-icon-sale')
 
+
+let expandedSale = false
+accountArrowBtnSale.addEventListener('click', function () {
+    if(!expandedSale) {
+        accountArrowBtnSale.style.transform = 'rotate(270deg)'
+        groupUrlsSale.classList.add('expanded')
+        expandedSale = !expandedSale
+    }else {
+        accountArrowBtnSale.style.transform = 'rotate(0deg)'
+        groupUrlsSale.classList.remove('expanded')
+        expandedSale = !expandedSale
+    }
+})
+let expandedStandart = false
+accountArrowBtnStandart.addEventListener('click', function () {
+    if(!expandedStandart) {
+        accountArrowBtnStandart.style.transform = 'rotate(270deg)'
+        groupUrlsStandart.classList.add('expanded')
+        expandedStandart = !expandedStandart
+    }else {
+        accountArrowBtnStandart.style.transform = 'rotate(0deg)'
+        groupUrlsStandart.classList.remove('expanded')
+        expandedStandart = !expandedStandart
+    }
+})
 
 let expandedMale = false
 accountArrowBtnMale.addEventListener('click', function () {
@@ -106,6 +135,7 @@ selectAllCheckbox.addEventListener('change', function () {
         }
     })
 })
+
 imageInput.addEventListener('change', function (e) {
     previewImages (e)
 })
@@ -115,20 +145,37 @@ imageInput.addEventListener('change', function (e) {
 renderGroups(groups)
 renderAccounts(accounts)
 
+
+
+// renders Groups
 function renderGroups (arr) {
     arr.forEach(element => {
-        const group = document.createElement('li')
-        group.classList.add('url-wrapper')
-        groupUrls.append(group)
-        group.innerHTML =  
+        if(element.groupType === 'sale') {
+            const group = document.createElement('li')
+            group.classList.add('url-wrapper')
+            groupUrlsSale.append(group)
+            group.innerHTML =  
         `
             <input type="checkbox" id=${"group" + element.groupId} class="group-checkbox">
             <label for=${"group" + element.groupId} class="group-address">${element.groupUrl}</label>
-            <span>${element.groupType}</span>
         `
+        }else {
+            const group = document.createElement('li')
+            group.classList.add('url-wrapper')
+            groupUrlsStandart.append(group)
+            group.innerHTML =  
+            `
+                <input type="checkbox" id=${"group" + element.groupId} class="group-checkbox">
+                <label for=${"group" + element.groupId} class="group-address">${element.groupUrl}</label>
+            `
+        }
+        
     });
 }
 
+
+
+// renders accounts
 function renderAccounts (arr) {
     arr.forEach(item => {
         if(item.gender === 'male') {
@@ -157,10 +204,7 @@ function renderAccounts (arr) {
 
 
 
-
-
-
-
+// shows images while upload
 function previewImages (e) {
     imagesWrapper.innerHTML = ''
     imagesCounter.textContent = `${e.target.files.length} files selected`;
