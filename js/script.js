@@ -107,9 +107,7 @@ function renderAccounts (arr) {
             <label  for=${"account" + item.accountId} class="account-address">${item.accountUrl}</label>
             <span>${item.gender}</span>
         `
-    })
-    
-    
+    });
 }
 
 
