@@ -56,9 +56,42 @@ const imageInput = document.querySelector('#image-uploader');
 const imagesWrapper = document.querySelector('.images-wrapper');
 const imagesCounter = document.querySelector('.images-counter');
 const groupUrls = document.querySelector('.urls-wrapper');
-const accountsWrapper = document.querySelector('.accounts-wrapper')
+const accountsWrapperMale = document.querySelector('.accounts-wrapper-male')
+const accountsWrapperFemale = document.querySelector('.accounts-wrapper-female')
 const selectAllCheckbox = document.querySelector('#select-all')
 let selectAllLabel = document.querySelector('#select-unselect')
+const accountArrowBtnMale = document.querySelector('.arrow-icon-male')
+const accountArrowBtnFemale = document.querySelector('.arrow-icon-female')
+
+
+let expandedMale = false
+accountArrowBtnMale.addEventListener('click', function () {
+    if(!expandedMale) {
+        accountArrowBtnMale.style.transform = 'rotate(180deg)'
+        accountsWrapperMale.classList.add('expanded')
+        expandedMale = !expandedMale
+    }else {
+        accountArrowBtnMale.style.transform = 'rotate(0deg)'
+        accountsWrapperMale.classList.remove('expanded')
+        expandedMale = !expandedMale
+    }
+    
+    
+})
+let expandedFemale = false
+accountArrowBtnFemale.addEventListener('click', function () {
+    if(!expandedFemale) {
+        accountArrowBtnFemale.style.transform = 'rotate(180deg)'
+        accountsWrapperFemale.classList.add('expanded')
+        expandedFemale = !expandedFemale
+    }else {
+        accountArrowBtnFemale.style.transform = 'rotate(0deg)'
+        accountsWrapperFemale.classList.remove('expanded')
+        expandedFemale = !expandedFemale
+    }
+    
+    
+})
 
 
 selectAllCheckbox.addEventListener('change', function () {
@@ -98,15 +131,28 @@ function renderGroups (arr) {
 
 function renderAccounts (arr) {
     arr.forEach(item => {
-        const account = document.createElement('li')
-        account.classList.add('account-wrapper')
-        accountsWrapper.append(account)
-        account.innerHTML = 
-        `
-            <input id=${"account" + item.accountId} type="checkbox" class="account-checkbox">
-            <label  for=${"account" + item.accountId} class="account-address">${item.accountUrl}</label>
-            <span>${item.gender}</span>
-        `
+        if(item.gender === 'male') {
+            const account = document.createElement('li')
+            account.classList.add('account-wrapper')
+            accountsWrapperMale.append(account)
+            account.innerHTML = 
+            `
+                <input id=${"account" + item.accountId} type="checkbox" class="account-checkbox">
+                <label  for=${"account" + item.accountId} class="account-address">${item.accountUrl}</label>
+                <span>${item.gender}</span>
+            `
+        }else {
+            const account = document.createElement('li')
+            account.classList.add('account-wrapper')
+            accountsWrapperFemale.append(account)
+            account.innerHTML = 
+            `
+                <input id=${"account" + item.accountId} type="checkbox" class="account-checkbox">
+                <label  for=${"account" + item.accountId} class="account-address">${item.accountUrl}</label>
+                <span>${item.gender}</span>
+            `
+        }
+        
     });
 }
 
