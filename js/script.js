@@ -139,7 +139,6 @@ function renderAccounts (arr) {
             `
                 <input id=${"account" + item.accountId} type="checkbox" class="account-checkbox">
                 <label  for=${"account" + item.accountId} class="account-address">${item.accountUrl}</label>
-                <span>${item.gender}</span>
             `
         }else {
             const account = document.createElement('li')
@@ -149,7 +148,6 @@ function renderAccounts (arr) {
             `
                 <input id=${"account" + item.accountId} type="checkbox" class="account-checkbox">
                 <label  for=${"account" + item.accountId} class="account-address">${item.accountUrl}</label>
-                <span>${item.gender}</span>
             `
         }
         
