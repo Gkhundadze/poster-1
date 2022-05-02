@@ -29,6 +29,26 @@ let groups = [
         groupUrl: 'https://www.facebook.com/groups/350357658821902',
         groupType: 'sale'
     },
+    {
+        groupId: 7,
+        groupUrl: 'https://www.facebook.com/groups/350357658821902',
+        groupType: 'sale'
+    },
+    {
+        groupId: 8,
+        groupUrl: 'https://www.facebook.com/groups/350357658821902',
+        groupType: 'sale'
+    },
+    {
+        groupId: 9,
+        groupUrl: 'https://www.facebook.com/groups/461962624218579',
+        groupType: 'standart'
+    },
+    {
+        groupId: 10,
+        groupUrl: 'https://www.facebook.com/groups/461962624218579',
+        groupType: 'standart'
+    },
 ]
 let accounts = [
     {
@@ -59,8 +79,10 @@ const groupUrlsStandart = document.querySelector('.urls-wrapper-standart');
 const groupUrlsSale = document.querySelector('.urls-wrapper-sale');
 const accountsWrapperMale = document.querySelector('.accounts-wrapper-male')
 const accountsWrapperFemale = document.querySelector('.accounts-wrapper-female')
-const selectAllCheckbox = document.querySelector('#select-all')
-let selectAllLabel = document.querySelector('#select-unselect')
+
+const selectAllSales = document.querySelector('#select-all-sales')
+const selectAllStandart = document.querySelector('#select-all-standart')
+
 
 const accountArrowBtnMale = document.querySelector('.arrow-icon-male')
 const accountArrowBtnFemale = document.querySelector('.arrow-icon-female')
@@ -68,10 +90,19 @@ const accountArrowBtnStandart = document.querySelector('.arrow-icon-standart')
 const accountArrowBtnSale = document.querySelector('.arrow-icon-sale')
 
 
+
+
+// start render
+renderGroups(groups)
+renderAccounts(accounts)
+// start render
+
+
+// EXPAND BUTTONS
 let expandedSale = false
 accountArrowBtnSale.addEventListener('click', function () {
     if(!expandedSale) {
-        accountArrowBtnSale.style.transform = 'rotate(270deg)'
+        accountArrowBtnSale.style.transform = 'rotate(90deg)'
         groupUrlsSale.classList.add('expanded')
         expandedSale = !expandedSale
     }else {
@@ -83,7 +114,7 @@ accountArrowBtnSale.addEventListener('click', function () {
 let expandedStandart = false
 accountArrowBtnStandart.addEventListener('click', function () {
     if(!expandedStandart) {
-        accountArrowBtnStandart.style.transform = 'rotate(270deg)'
+        accountArrowBtnStandart.style.transform = 'rotate(90deg)'
         groupUrlsStandart.classList.add('expanded')
         expandedStandart = !expandedStandart
     }else {
@@ -96,7 +127,7 @@ accountArrowBtnStandart.addEventListener('click', function () {
 let expandedMale = false
 accountArrowBtnMale.addEventListener('click', function () {
     if(!expandedMale) {
-        accountArrowBtnMale.style.transform = 'rotate(270deg)'
+        accountArrowBtnMale.style.transform = 'rotate(90deg)'
         accountsWrapperMale.classList.add('expanded')
         expandedMale = !expandedMale
     }else {
@@ -110,7 +141,7 @@ accountArrowBtnMale.addEventListener('click', function () {
 let expandedFemale = false
 accountArrowBtnFemale.addEventListener('click', function () {
     if(!expandedFemale) {
-        accountArrowBtnFemale.style.transform = 'rotate(270deg)'
+        accountArrowBtnFemale.style.transform = 'rotate(90deg)'
         accountsWrapperFemale.classList.add('expanded')
         expandedFemale = !expandedFemale
     }else {
@@ -121,29 +152,47 @@ accountArrowBtnFemale.addEventListener('click', function () {
     
     
 })
+// /EXPAND BUTTONS
 
 
-selectAllCheckbox.addEventListener('change', function () {
-    const checkBoxes = document.querySelectorAll('.group-checkbox');
-    checkBoxes.forEach((checkbox) => {
-        if(selectAllCheckbox.checked) {
-            checkbox.checked = true
-            selectAllLabel.textContent = 'Uncheck all'
+
+let standartGroups = document.querySelectorAll('[group-type-standart]')
+let standartGroupsChecked = document.querySelector('.selected-standart')
+// let chackedstandart = document.querySelectorAll('input[group-type="standart"]:checked')
+selectAllStandart.addEventListener('change', function () {
+    standartGroups.forEach(standartGroup => {
+        if(selectAllStandart.checked) {
+            standartGroup.checked = true
+            standartGroupsChecked.textContent = standartGroups.length
+            
         }else {
-            checkbox.checked = false
-            selectAllLabel.textContent = 'Check all'
+            standartGroup.checked = false
+            standartGroupsChecked.textContent = 0
+
         }
     })
 })
 
+let saleGroups = document.querySelectorAll('[group-type-sale]')
+let saleGroupsChecked = document.querySelector('.selected-sale')
+
+selectAllSales.addEventListener('change', function () {
+    saleGroups.forEach(saleGroup => {
+        if(selectAllSales.checked) {
+            saleGroup.checked = true
+            saleGroupsChecked.textContent = saleGroups.length
+        }else {
+            saleGroup.checked = false
+            saleGroupsChecked.textContent = 0
+        }
+    })
+})
 imageInput.addEventListener('change', function (e) {
     previewImages (e)
 })
 
 
 
-renderGroups(groups)
-renderAccounts(accounts)
 
 
 
@@ -156,7 +205,7 @@ function renderGroups (arr) {
             groupUrlsSale.append(group)
             group.innerHTML =  
         `
-            <input type="checkbox" id=${"group" + element.groupId} class="group-checkbox">
+            <input type="checkbox" id=${"group" + element.groupId} class='group-checkbox' group-type-${element.groupType}>
             <label for=${"group" + element.groupId} class="group-address">${element.groupUrl}</label>
         `
         }else {
@@ -165,7 +214,7 @@ function renderGroups (arr) {
             groupUrlsStandart.append(group)
             group.innerHTML =  
             `
-                <input type="checkbox" id=${"group" + element.groupId} class="group-checkbox">
+                <input type="checkbox" id=${"group" + element.groupId} class="group-checkbox" group-type-${element.groupType}>
                 <label for=${"group" + element.groupId} class="group-address">${element.groupUrl}</label>
             `
         }

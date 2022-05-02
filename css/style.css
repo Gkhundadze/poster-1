@@ -27,18 +27,15 @@ a{
     padding: 10px;
     border-radius: 10px;
 }
-.groups-wrapper {
-    position: relative;
+.sale-group-title,
+.standart-group-title {
+    display: inline-block;
 }
-.select-all-wrapper {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+/* .select-all-wrapper {
     padding: 5px;
-}
-.select-all-wrapper label {
-    margin-right: 5px;
-}
+    display: flex;
+    justify-content: flex-end;
+} */
 .accout-wrapper {
     margin-bottom: 20px;
 }
@@ -57,9 +54,14 @@ a{
 }
 .account-checkbox,
 .group-checkbox,
-#select-all
+#select-all-standart,
+#select-all-sales
 {
     transform: scale(1.5);
+}
+.selected-standart,
+.selected-sale {
+    
 }
 .url-wrapper,
 .account-wrapper {
@@ -146,7 +148,7 @@ a{
 .standart-group-title,
 .sale-group-title,
  .female-title {
-    margin: 10px 0;
+    margin: 10px 5px;
     line-height: 24px;
 }
 
